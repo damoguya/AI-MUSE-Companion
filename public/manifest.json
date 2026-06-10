@@ -1,0 +1,16 @@
+{
+  "name": "ChatPai Companion",
+  "short_name": "ChatPai",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#04010a",
+  "theme_color": "#0a071d",
+  "description": "AI Companions",
+  "icons": [
+    {
+      "src": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJjdXJyZW50Q29sb3IiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBjbGFzcz0ibHVjaWRlIGx1Y2lkZS1ib3QiPjxwYXRoIGQ9Ik0xMiA4VjRINTYgNGg4djR6Ii8+PHBhdGggZD0iTTggMTZ2LTJhNCA0IDAgMCAxIDQtNGg0YTRjNCAwIDAgMSA0IDR2MmExIDEgMCAwIDEgLTEgMUgxMGEtMSAtMSAwIDAgMSAtMSAtMXoiLz48cGF0aCBkPSJNMTEgMTB2LTIiLz48cGF0aCBkPSJNMTEgMTVIMTYiLz48L3N2Zz4=",
+      "sizes": "192x192",
+      "type": "image/svg+xml"
+    }
+  ]
+}

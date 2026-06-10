@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1.0, user-scalable=no" />
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <title> AI COMPANIONS-MUSE</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script>
+      window.difyChatbotConfig = {
+        token: 'V51brYughrgXDKP5',
+        baseUrl: 'https://im3.aigirlyes.com',
+        inputs: {},
+        systemVariables: {
+          user_id: localStorage.getItem("muse_user_id") || "usr_local_test"
+        },
+        userVariables: {},
+      }
+    </script>
+    <script
+      src="https://im3.aigirlyes.com/embed.min.js"
+      id="V51brYughrgXDKP5"
+      defer>
+    </script>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+
