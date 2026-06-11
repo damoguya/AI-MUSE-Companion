@@ -93,3 +93,24 @@ body {
   pointer-events: none;
   animation: float-heart 1.6s cubic-bezier(0.25, 1, 0.5, 1) forwards;
 }
+
+/* Hide ugly native HTML5 video controls in Android/iOS WebViews */
+video::-webkit-media-controls {
+  display: none !important;
+}
+
+video::-webkit-media-controls-enclosure {
+  display: none !important;
+}
+
+video::-webkit-media-controls-panel {
+  display: none !important;
+}
+
+video::-webkit-media-controls-play-button {
+  display: none !important;
+}
+
+video::-webkit-media-controls-start-playback-button {
+  display: none !important;
+}

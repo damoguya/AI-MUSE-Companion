@@ -153,7 +153,9 @@ export function InstallPrompt({ isActiveChatOpen }: InstallPromptProps) {
     }
   };
 
-  if (!showPrompt || isActiveChatOpen) return null;
+  // Hide PWA install prompt entirely inside native Capacitor APK
+  const isNativePlatform = !!(window as any).Capacitor?.isNativePlatform?.();
+  if (!showPrompt || isActiveChatOpen || isNativePlatform) return null;
 
   return (
     <div className="fixed bottom-0 inset-x-0 z-[100] pb-[env(safe-area-inset-bottom)] px-4 translate-y-0 transition-transform duration-500 ease-out flex justify-center animate-in slide-in-from-bottom duration-300">
