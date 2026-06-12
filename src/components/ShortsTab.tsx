@@ -353,6 +353,10 @@ export default function ShortsTab({
             muted={isMuted}
             preload="auto"
             playsInline
+            controls={false}
+            disablePictureInPicture
+            disableRemotePlayback
+            poster={currentCompanion.avatar}
             referrerPolicy="no-referrer"
             onClick={handleVideoClick}
             className="w-full h-full object-cover filter brightness-[0.8] contrast-[1.05]"
