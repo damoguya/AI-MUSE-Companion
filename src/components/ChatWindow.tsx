@@ -309,8 +309,10 @@ export default function ChatWindow({
         taskResult.data?.data?.data?.[0]?.url;
 
       if (generatedUrl) {
-        console.log("[ChatWindow FastVideo Success] Play URL:", generatedUrl);
-        setCurrentVideoUrl(generatedUrl);
+        // Force HTTPS to prevent Mixed Content blocking in Capacitor WebView (which is now on an https:// origin)
+        const secureUrl = generatedUrl.replace(/^http:\/\//i, 'https://');
+        console.log("[ChatWindow FastVideo Success] Play URL:", secureUrl);
+        setCurrentVideoUrl(secureUrl);
         setMediaError(false);
 
         // Save record (assuming needed to fix "missing in profile" issue)
@@ -901,6 +903,9 @@ export default function ChatWindow({
             loop
             muted={isMuted}
             playsInline
+            controls={false}
+            disablePictureInPicture
+            disableRemotePlayback
             referrerPolicy="no-referrer"
             onError={() => setMediaError(true)}
             className={`w-full h-full bg-black transition-all duration-300 ${
