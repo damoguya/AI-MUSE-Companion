@@ -5,7 +5,12 @@ on:
     branches:
       - main
       - master
-  workflow_dispatch: # 支持在 GitHub 页面上手动触发打包
+  workflow_dispatch:
+    inputs:
+      h5_url:
+        description: 'H5 域名地址 (留空则默认使用 capacitor.config.ts 中的地址)'
+        required: false
+        default: ''
 
 jobs:
   build:
@@ -30,6 +35,17 @@ jobs:
 
       - name: Install Dependencies
         run: npm ci || npm install
+
+      - name: Override H5 URL if provided
+        if: ${{ inputs.h5_url != '' }}
+        run: |
+          node -e "
+            const fs = require('fs');
+            let content = fs.readFileSync('capacitor.config.ts', 'utf8');
+            content = content.replace(/url:\s*['\"].*?['\"]/, \"url: '${{ inputs.h5_url }}'\");
+            fs.writeFileSync('capacitor.config.ts', content);
+            console.log('Overrode H5 URL to: ${{ inputs.h5_url }}');
+          "
 
       - name: Build Web App
         run: npm run build
