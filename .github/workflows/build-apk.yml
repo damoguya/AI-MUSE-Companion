@@ -74,15 +74,7 @@ jobs:
           convert $SRC -resize 192x192 $RES/mipmap-xxxhdpi/ic_launcher_round.png
 
           # 强制写入正确的应用名称（防止 cap sync 覆盖）
-          cat > $RES/values/strings.xml << 'STREOF'
-<?xml version='1.0' encoding='utf-8'?>
-<resources>
-    <string name="app_name">AIMUSE</string>
-    <string name="title_activity_main">AIMUSE</string>
-    <string name="package_name">com.aimuse.companion</string>
-    <string name="custom_url_scheme">com.aimuse.companion</string>
-</resources>
-STREOF
+          printf '%s\n' "<?xml version='1.0' encoding='utf-8'?>" "<resources>" '    <string name="app_name">AIMUSE</string>' '    <string name="title_activity_main">AIMUSE</string>' '    <string name="package_name">com.aimuse.companion</string>' '    <string name="custom_url_scheme">com.aimuse.companion</string>' "</resources>" > $RES/values/strings.xml
           echo "Custom icons and app name restored successfully."
 
       - name: Make Gradle Executable
