@@ -53,6 +53,38 @@ jobs:
       - name: Sync Capacitor to Android
         run: npx cap sync android
 
+      - name: Restore AIMUSE Custom Icons and App Name
+        run: |
+          RES=android/app/src/main/res
+          SRC=$RES/drawable/ic_launcher_foreground.png
+
+          # 安装 ImageMagick（Ubuntu 自带，通常无需安装）
+          which convert || sudo apt-get install -y imagemagick
+
+          # 用 1024px 源图缩放生成全分辨率图标
+          convert $SRC -resize 48x48   $RES/mipmap-mdpi/ic_launcher.png
+          convert $SRC -resize 48x48   $RES/mipmap-mdpi/ic_launcher_round.png
+          convert $SRC -resize 72x72   $RES/mipmap-hdpi/ic_launcher.png
+          convert $SRC -resize 72x72   $RES/mipmap-hdpi/ic_launcher_round.png
+          convert $SRC -resize 96x96   $RES/mipmap-xhdpi/ic_launcher.png
+          convert $SRC -resize 96x96   $RES/mipmap-xhdpi/ic_launcher_round.png
+          convert $SRC -resize 144x144 $RES/mipmap-xxhdpi/ic_launcher.png
+          convert $SRC -resize 144x144 $RES/mipmap-xxhdpi/ic_launcher_round.png
+          convert $SRC -resize 192x192 $RES/mipmap-xxxhdpi/ic_launcher.png
+          convert $SRC -resize 192x192 $RES/mipmap-xxxhdpi/ic_launcher_round.png
+
+          # 强制写入正确的应用名称（防止 cap sync 覆盖）
+          cat > $RES/values/strings.xml << 'STREOF'
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">AIMUSE</string>
+    <string name="title_activity_main">AIMUSE</string>
+    <string name="package_name">com.aimuse.companion</string>
+    <string name="custom_url_scheme">com.aimuse.companion</string>
+</resources>
+STREOF
+          echo "Custom icons and app name restored successfully."
+
       - name: Make Gradle Executable
         run: chmod +x android/gradlew
 
